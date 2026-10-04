@@ -4,7 +4,7 @@ const express = require('express');
 const logger = require('./middleware/logger');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
-const productosRouter = require('./routes/productos');
+const productosRouter = require('./routes/productos.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

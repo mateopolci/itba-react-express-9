@@ -1,9 +1,11 @@
 //productdetail//
+
 import "./App.css";
 
 function ProductDetail({
   producto,
   onClose,
+  onAddToCart,
 }) {
   if (!producto) {
     return null;
@@ -11,10 +13,11 @@ function ProductDetail({
 
   return (
     <section className="product-detail">
-      
+
       <button
         className="btn-volver"
-        onClick={onClose} >
+        onClick={onClose}
+      >
         ← Volver
       </button>
 
@@ -26,6 +29,7 @@ function ProductDetail({
         />
 
         <div className="detalle-info">
+
           <p className="eyebrow">
             Colección Hermanos Jota
           </p>
@@ -41,7 +45,10 @@ function ProductDetail({
             {producto.materiales}
           </p>
 
-          <button className="btn-detalle">
+          <button
+            className="btn-detalle"
+            onClick={() => onAddToCart(producto)}
+          >
             Agregar al carrito
           </button>
 
