@@ -1,29 +1,31 @@
 //productcard//
 import "./ProductCard.css";
 
-function ProductCard({
-  producto, onSelect, }) {
-  return (
-    <article className="card-producto">
-      <img
-        src={producto.imagen}
-        alt={producto.nombre}
-        loading="lazy"
-      />
+const API_URL = "http://localhost:3000";
 
-      <div className="card-info">
-        <h3>{producto.nombre}</h3>
+function ProductCard({ producto, onSelect }) {
+    return (
+        <article className="card-producto">
+            <img
+                src={`${API_URL}${producto.imagen}`}
+                alt={producto.nombre}
+                loading="lazy"
+            />
 
-        <p>{producto.materiales}</p>
+            <div className="card-info">
+                <h3>{producto.nombre}</h3>
 
-        <button
-          className="btn-detalle"
-          onClick={() => onSelect(producto)}>
-          Ver detalle
-        </button>
-      </div>
-    </article>
-  );
+                <p>{producto.materiales}</p>
+
+                <button
+                    className="btn-detalle"
+                    onClick={() => onSelect(producto)}
+                >
+                    Ver detalle
+                </button>
+            </div>
+        </article>
+    );
 }
 
 export default ProductCard;

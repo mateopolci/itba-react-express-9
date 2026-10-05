@@ -2,62 +2,46 @@
 
 import "./App.css";
 
-function ProductDetail({
-  producto,
-  onClose,
-  onAddToCart,
-}) {
-  if (!producto) {
-    return null;
-  }
+const API_URL = "http://localhost:3000";
 
-  return (
-    <section className="product-detail">
+function ProductDetail({ producto, onClose, onAddToCart }) {
+    if (!producto) {
+        return null;
+    }
 
-      <button
-        className="btn-volver"
-        onClick={onClose}
-      >
-        ← Volver
-      </button>
+    return (
+        <section className="product-detail">
+            <button className="btn-volver" onClick={onClose}>
+                ← Volver
+            </button>
 
-      <div className="detalle-contenido">
+            <div className="detalle-contenido">
+                <img
+                    src={`${API_URL}${producto.imagen}`}
+                    alt={producto.nombre}
+                />
 
-        <img
-          src={producto.imagen}
-          alt={producto.nombre}
-        />
+                <div className="detalle-info">
+                    <p className="eyebrow">Colección Hermanos Jota</p>
 
-        <div className="detalle-info">
+                    <h1>{producto.nombre}</h1>
 
-          <p className="eyebrow">
-            Colección Hermanos Jota
-          </p>
+                    <p>{producto.descripcion}</p>
 
-          <h1>{producto.nombre}</h1>
+                    <p>
+                        <strong>Materiales:</strong> {producto.materiales}
+                    </p>
 
-          <p>
-            {producto.descripcion}
-          </p>
-
-          <p>
-            <strong>Materiales:</strong>{" "}
-            {producto.materiales}
-          </p>
-
-          <button
-            className="btn-detalle"
-            onClick={() => onAddToCart(producto)}
-          >
-            Agregar al carrito
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-  );
+                    <button
+                        className="btn-detalle"
+                        onClick={() => onAddToCart(producto)}
+                    >
+                        Agregar al carrito
+                    </button>
+                </div>
+            </div>
+        </section>
+    );
 }
 
 export default ProductDetail;
