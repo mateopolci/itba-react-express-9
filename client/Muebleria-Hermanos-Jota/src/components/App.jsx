@@ -5,7 +5,7 @@ import ProductDetail from "./ProductDetail";
 import ContactForm from "./ContactForm";
 import Footer from "./Footer";
 import CartModal from "./CartModal";
-import "./App.css";
+import "../styles/App.css";
 
 const API_URL = "http://localhost:3000";
 

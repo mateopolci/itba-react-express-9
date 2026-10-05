@@ -1,6 +1,6 @@
 //productlist//
 import ProductCard from "./ProductCard";
-import "./ProductList.css";
+import "../styles/ProductList.css";
 
 function ProductList({
   productos,

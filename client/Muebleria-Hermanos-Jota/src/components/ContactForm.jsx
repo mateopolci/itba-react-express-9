@@ -1,6 +1,6 @@
 //contactform//
 import { useState } from "react";
-import "./ContactForm.css";
+import "../styles/ContactForm.css";
 
 function ContactForm({ onSubmit }) {
     const [formulario, setFormulario] = useState({

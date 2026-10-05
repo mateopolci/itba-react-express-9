@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./CartModal.css";
+import "../styles/CartModal.css";
 
 const API_URL = "http://localhost:3000";
 

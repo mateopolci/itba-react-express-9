@@ -1,5 +1,5 @@
 //productcard//
-import "./ProductCard.css";
+import "../styles/ProductCard.css";
 
 const API_URL = "http://localhost:3000";
 

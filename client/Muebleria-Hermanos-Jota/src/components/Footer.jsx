@@ -1,5 +1,5 @@
 //footer//
-import "./styles.css";
+import "../styles/styles.css";
 
 function Footer({
   empresa = "Mueblería Hermanos Jota",
