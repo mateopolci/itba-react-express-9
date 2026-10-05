@@ -1,0 +1,92 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 14px max(24px, calc((100% - 1200px) / 2));
+    border-bottom: 1px solid var(--borde);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 5px 20px rgba(92, 55, 33, 0.06);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--siena-dark);
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.navbar-mark {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--siena);
+    color: var(--blanco);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 26px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-menu a {
+    color: var(--texto);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.navbar-menu a:hover {
+    color: var(--rosa);
+}
+
+.navbar-carrito {
+    border: 0;
+    border-radius: 4px;
+    padding: 10px 14px;
+    background: var(--siena-dark);
+    color: var(--blanco);
+    font-weight: 700;
+}
+
+.contador {
+    display: inline-grid;
+    min-width: 24px;
+    height: 24px;
+    margin-left: 7px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--oro);
+}
+
+@media (max-width: 760px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px 20px;
+    }
+
+    .navbar-logo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navbar-menu {
+        gap: 16px;
+    }
+}

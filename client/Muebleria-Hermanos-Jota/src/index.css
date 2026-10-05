@@ -1,34 +1,71 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:root {
+    --siena: #9c4f2d;
+    --siena-dark: #71371f;
+    --salvia: #789b68;
+    --alabastro: #f5e6d3;
+    --oro: #c9942e;
+    --rosa: #c47a6d;
+    --texto: #332b26;
+    --muted: #74675f;
+    --blanco: #ffffff;
+    --borde: #e5d6c8;
+    --sombra: 0 16px 36px rgba(92, 55, 33, 0.12);
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
-  font-family: Arial, sans-serif;
-  background: #f5f1eb;
-  color: #2f2a25;
+    margin: 0;
+    min-width: 320px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background: var(--alabastro);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    font-family: Georgia, serif;
+    color: var(--siena-dark);
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
 }
 
 button,
 input,
 textarea {
-  font: inherit;
+    font: inherit;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--rosa);
+    outline-offset: 3px;
 }
 
 img {
-  max-width: 100%;
-  display: block;
+    max-width: 100%;
+    display: block;
 }
 
 a {
-  color: inherit;
+    color: inherit;
 }

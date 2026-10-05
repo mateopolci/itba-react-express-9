@@ -1,0 +1,26 @@
+.buscador-seccion {
+    max-width: 560px;
+    margin: 0 auto 42px;
+    text-align: center;
+}
+
+.buscador-seccion label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+#buscador {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--salvia);
+    border-radius: 6px;
+    background: var(--blanco);
+    color: var(--texto);
+}
+
+.sin-resultados {
+    padding: 30px;
+    color: var(--muted);
+    text-align: center;
+}
