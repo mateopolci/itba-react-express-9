@@ -1,122 +1,105 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import ProductList from "./ProductList";
+import ProductDetail from "./ProductDetail";
+import ContactForm from "./ContactForm";
+import Footer from "./Footer";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [productos, setProductos] = useState([]);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState("");
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const [carrito, setCarrito] = useState([]);
+  const [busqueda, setBusqueda] = useState("");
+
+  useEffect(() => {
+    const obtenerProductos = async () => {
+      try {
+        setCargando(true);
+        setError("");
+
+        const respuesta = await fetch("http://localhost:3000/api/productos");
+
+        if (!respuesta.ok) {
+          throw new Error("No se pudieron obtener los productos.");
+        }
+
+        const datos = await respuesta.json();
+        setProductos(datos);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setCargando(false);
+      }
+    };
+
+    obtenerProductos();
+  }, []);
+
+  const productosFiltrados = productos.filter((producto) => {
+    const textoBusqueda = busqueda.toLowerCase();
+
+    return (
+      producto.nombre.toLowerCase().includes(textoBusqueda) ||
+      producto.descripcion.toLowerCase().includes(textoBusqueda) ||
+      producto.materiales.toLowerCase().includes(textoBusqueda)
+    );
+  });
+
+  const agregarAlCarrito = (producto) => {
+    setCarrito((carritoActual) => [...carritoActual, producto]);
+  };
+
+  const seleccionarProducto = (producto) => {
+    setProductoSeleccionado(producto);
+  };
+
+  const cerrarDetalle = () => {
+    setProductoSeleccionado(null);
+  };
+
+  const manejarBusqueda = (e) => {
+    setBusqueda(e.target.value);
+  };
+
+  const manejarContacto = (datosFormulario) => {
+    console.log("Formulario enviado:", datosFormulario);
+  };
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <Navbar carritoCantidad={carrito.length} />
 
-      <div className="ticks"></div>
+      <main>
+        {cargando && <p>Cargando productos...</p>}
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        {error && <p>{error}</p>}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+        {!cargando && !error && !productoSeleccionado && (
+          <ProductList
+            productos={productosFiltrados}
+            onSelect={seleccionarProducto}
+            busqueda={busqueda}
+            onBuscar={manejarBusqueda}
+          />
+        )}
+
+        {!cargando && !error && productoSeleccionado && (
+          <ProductDetail
+            producto={productoSeleccionado}
+            onClose={cerrarDetalle}
+            onAddToCart={agregarAlCarrito}
+          />
+        )}
+
+        <ContactForm onSubmit={manejarContacto} />
+      </main>
+
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
