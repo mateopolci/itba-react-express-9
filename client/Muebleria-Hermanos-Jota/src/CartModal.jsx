@@ -39,12 +39,18 @@ function CartModal({
         setEnviado(true);
     };
 
+    const cerrarModal = () => {
+        setModo("carrito");
+        setEnviado(false);
+        onClose();
+    };
+
     return (
         <div
             className="carrito-panel"
             role="presentation"
             onMouseDown={(event) => {
-                if (event.target === event.currentTarget) onClose();
+                if (event.target === event.currentTarget) cerrarModal();
             }}
         >
             <section
@@ -54,16 +60,28 @@ function CartModal({
                 aria-labelledby="titulo-carrito"
             >
                 <div className="carrito-header">
-                    <div>
-                        <p className="eyebrow">Hermanos Jota</p>
-                        <h2 id="titulo-carrito">
-                            {modo === "carrito" ? "Tu carrito" : "Checkout"}
-                        </h2>
+                    <div className="carrito-header-titulo">
+                        {modo === "checkout" && !enviado && (
+                            <button
+                                type="button"
+                                className="boton-volver"
+                                onClick={() => cambiarModo("carrito")}
+                                aria-label="Volver al carrito"
+                            >
+                                ←
+                            </button>
+                        )}
+                        <div>
+                            <p className="eyebrow">Hermanos Jota</p>
+                            <h2 id="titulo-carrito">
+                                {modo === "carrito" ? "Tu carrito" : "Checkout"}
+                            </h2>
+                        </div>
                     </div>
                     <button
                         type="button"
                         className="boton-cerrar"
-                        onClick={onClose}
+                        onClick={cerrarModal}
                         aria-label="Cerrar carrito"
                     >
                         x
@@ -81,7 +99,7 @@ function CartModal({
                         <button
                             type="button"
                             className="btn-detalle"
-                            onClick={onClose}
+                            onClick={cerrarModal}
                         >
                             Cerrar
                         </button>
