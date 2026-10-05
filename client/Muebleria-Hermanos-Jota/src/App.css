@@ -8,6 +8,79 @@ main {
     );
 }
 
+.hero-banner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 112px 20px 124px;
+    text-align: center;
+}
+
+.hero-banner h1 {
+    margin-bottom: 22px;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    letter-spacing: 0.03em;
+}
+
+.hero-banner p:not(.eyebrow) {
+    max-width: 680px;
+    margin: 0 auto 30px;
+    color: var(--muted);
+    font-size: 1.1rem;
+}
+
+.btn-hero {
+    border: 0;
+    border-radius: 4px;
+    padding: 13px 20px;
+    background: var(--oro);
+    color: var(--blanco);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition:
+        background 180ms ease,
+        transform 180ms ease;
+}
+
+.btn-hero:hover {
+    background: var(--rosa);
+    transform: translateY(-2px);
+}
+
+.nosotros {
+    padding: 82px 20px;
+    background: var(--blanco);
+}
+
+.nosotros-contenido {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.nosotros-contenido h2 {
+    margin-bottom: 22px;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: 0.03em;
+}
+
+.nosotros-contenido p:not(.eyebrow) {
+    color: var(--muted);
+}
+
+.estado-pagina {
+    display: grid;
+    min-height: 48vh;
+    place-content: center;
+    justify-items: center;
+    padding: 48px 20px;
+    text-align: center;
+}
+
+.error-pagina {
+    color: var(--siena);
+}
+
 .productos-seccion,
 .product-detail,
 .contacto {
@@ -193,5 +266,9 @@ main {
     .detalle-contenido {
         grid-template-columns: 1fr;
         padding: 20px;
+    }
+
+    .hero-banner {
+        padding: 72px 20px 88px;
     }
 }
